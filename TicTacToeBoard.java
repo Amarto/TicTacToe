@@ -1,4 +1,13 @@
-
+/**
+ * TicTacToeBoard Class
+ * Describes an object TicTacToeBoard
+ * A 3x3 char array that starts out filled with spaces
+ * Can add o's or x's
+ * Return value at a given index, or
+ * Print the board
+ * @author amartorajaram
+ *
+ */
 public class TicTacToeBoard 
 {
 	private char[][] tictactoeboard;
@@ -12,7 +21,7 @@ public class TicTacToeBoard
 		{
 			for (int j = 0; j < 3; j++)
 			{
-				tictactoeboard[i][j] = ' ';
+				tictactoeboard[i][j] = '/';
 			}
 		}	
 	}

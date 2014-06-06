@@ -11,9 +11,7 @@ public class Test {
 	{
 		Game g = new Game();
 		g.play();
-		
-		
-		
+				
 	}
 
 }

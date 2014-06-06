@@ -1,4 +1,12 @@
-
+/**
+ * Player class
+ * Describes a player
+ * Has a board 
+ * Can 'move'
+ * Contains methods to pass board between Player and Game
+ * @author amartorajaram
+ *
+ */
 public class Player 
 {
 	private TicTacToeBoard board;
