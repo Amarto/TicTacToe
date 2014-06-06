@@ -41,7 +41,10 @@ public class Game
 			if (random %2 == 0)
 			{
 				humanPlayer.getBoard(board);
-				board.printBoard();
+				if (random != 0)
+				{
+					board.printBoard();
+				}
 				System.out.println("");
 				int row = promptRow();
 				int column = promptColumn();
@@ -56,8 +59,13 @@ public class Game
 				
 				humanPlayer.move(row, column, 'x');
 				board = humanPlayer.updateBoard();
+				checkWinner();
 				board.printBoard();
 				System.out.println("");
+				if (isWinner)
+				{
+					System.out.println("You win!");
+				}
 			}
 			
 			if (random % 2 == 1)
@@ -68,9 +76,6 @@ public class Game
 
 				char ch = 'o';
 				
-
-
-				
 				while (!isLegal(row, column))
 				{
 					row = (int) (Math.random()*3);
@@ -80,7 +85,12 @@ public class Game
 				computerPlayer.move(row, column, ch);
 				board = computerPlayer.updateBoard();
 				board.printBoard();
+				checkWinner();
 				System.out.println("");
+				if (isWinner)
+				{
+					System.out.println("You lose!");
+				}
 			}
 			
 			random++;
@@ -92,8 +102,50 @@ public class Game
 	 * CheckWinner
 	 * @return true if there is a winner
 	 */
-	public boolean isWinner()
+	public boolean checkWinner()
 	{
+
+		for (int i = 0; i < 3; i++)
+		{
+		int j = 0;
+					
+			if (board.getValue(i, j) == board.getValue(i, j+1) && 
+				board.getValue(i, j+1) == board.getValue(i, j+2)
+				&& board.getValue(i,j) != '/') 
+			{
+				isWinner = true;
+			}
+		}	
+		for (int j = 0; j < 3; j++)
+		{
+		int i = 0;
+						
+				if (board.getValue(i, j) == board.getValue(i+1, j) && 
+					board.getValue(i+1, j) == board.getValue(i+2, j) 
+					&& board.getValue(i,j) != '/')  
+				{
+					isWinner = true;
+				}
+		
+		if (board.getValue(0,0) == board.getValue(1,1) && 
+				board.getValue(1,1) == board.getValue(2,2) 	
+				&& board.getValue(i,j) != '/') 
+		{
+			isWinner = true;
+		}
+		
+		if (board.getValue(0,2) == board.getValue(1,1) && 
+				board.getValue(1,1) == board.getValue(2,0) 
+				&& board.getValue(i,j) != '/') 
+		{
+			isWinner = true;
+		}
+		
+			
+			
+		}
+
+		
 	
 		
 		return isWinner;
@@ -119,7 +171,7 @@ public class Game
 	 */
 	public int promptRow()
 	{
-		System.out.println("Please enter the row index: ");
+		System.out.println("Please enter the row index: (0-2) ");
 		int row = in.nextInt();
 		
 		return row;
@@ -133,7 +185,7 @@ public class Game
 	 */
 	public int promptColumn()
 	{
-		System.out.println("Please enter the column index: ");
+		System.out.println("Please enter the column index: (0-2) ");
 		int column = in.nextInt();
 		
 		return column;
